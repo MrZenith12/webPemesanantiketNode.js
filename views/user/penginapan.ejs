@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/public/image/logo1.png" type="image/x-icon" />
+    <title>Penginapan</title>
+    <!-- swiper css link  -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" type="text/css" href="/public/css/stylepenginapan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet"  type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="header">
+        <a href="home.html" class="logo">Trip Buddy</a>
+        <nav class="navbar">
+            <a href="/user/index">Beranda</a>
+            <a href="/user/destinasi">Wisata</a>
+            <a href="/user/penginapan">Penginapan</a>
+            <a href="/user/paket">Paket</a>
+            <a href="/user/daftarpesanan">My Booking</a>
+        </nav>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#272343;">
+              <i class="fa-solid fa-user" style="margin-right:5px;"><%= email %></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/logout">Logout</a>
+            </div>
+          </li>
+
+    </section>
+
+    <!-- Mulai home   -->
+    <section class="home">
+        <div class="swiper home-slider">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide slide" style="background:url(/public/img/gambar\ 10.jpg) no-repeat">
+                  <div class="content">
+                     <span>Keindahan Kota Di Indonesia</span>
+                     <h3>SURABAYA, JAWA TIMUR</h3>
+                  </div>
+               </div>
+        
+               <div class="swiper-slide slide" style="background:url(/public/img/gambar\ 11.jpg) no-repeat">
+                  <div class="content">
+                     <span>Keindahan Kota Di Indonesia</span>
+                     <h3>KOTA JAKARTA, INDONESIA</h3>
+                  </div>
+               </div>
+        
+               <div class="swiper-slide slide" style="background:url(/public/img/gambar\ 12.jpg) no-repeat">
+                  <div class="content">
+                     <span>Keindahan Kota Di Indonesia</span>
+                     <h3>MANADO, SULAWESI UTARA</h3>
+                  </div>
+               </div>
+               <div class="swiper-slide slide" style="background:url(/public/img/gambar\ 4.jpg) no-repeat">
+                  <div class="content">
+                     <span>Keindahan Kota Di Indonesia</span>
+                     <h3>PULAU NIAS, SUMATERA UTARA</h3>
+                  </div>
+               </div>
+        
+              </div>
+        </div>
+
+        <!-- <div class="cari">
+            <form method="post">
+                <div class="search-container">
+                    <input class="search" type="text" name="search" autocomplete="off" placeholder="Cari Penginapan">
+                    <button type="submit" class="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <div class="kotakkiri">
+                <form method="POST" action="">
+                    <label for="price_range">Kisaran Harga:</label>
+                    <input type="range" name="price_range" id="price_range" min="0" max="100" step="1" oninput="price_output.value = 'Rp ' + formatNumber(price_range.value * 1000000)">
+                    <label for="price_output">Harga:</label>
+                    <output name="price_output" id="price_output">Rp 0</output>
+                    <input type="submit" name="submit" value="Filter">
+                </form>
+            </div>
+        </div>
+        <script>
+            // JavaScript function to format number as currency
+            function formatNumber(num) {
+                return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+            }
+        </script> -->
+    
+        <!-- Info Penginapan -->
+        <div class="container">
+            <div class="tempatdestinasi">
+                <h2>Penginapan</h2>
+                <div class="tempat">
+                    <% penginapan.forEach(penginapan => { %>
+                        <div class="perdestinasi">
+                            <img src="/get_imagepenginapan/<%= penginapan.id_penginapan %>" alt="">
+                            <div class="tombol">
+                                <a href="/detailpenginapan/<%= penginapan.id_penginapan %>" class="btn-detail">Detail</a>
+                            </div>                            
+                            <h3><%= penginapan.nama_penginapan %></h3>
+                            <h5>Harga: <%= penginapan.harga_penginapan %></h5>
+                            <h5>Ketersedian: <%= penginapan.sisa_penginapan %></h5>
+                            <p><%= penginapan.deskripsi_penginapan %></p>
+                            <div class="card-body">
+                                <a href="/pesanpenginapan/<%= penginapan.id_penginapan %>" class="btn btn-primary btn-pesan" style="width:100%; text-align: center;">Pesan Sekarang</a>
+                            </div>                            
+                        </div>
+                    <% }); %>
+                </div>
+            </div>                        
+        </div> 
+    </section>
+
+    <!-- footer section starts  -->
+    <section class="footer">
+        <div class="box-container">
+
+            <div class="box">
+               <h3>Link Utama</h3>
+               <a href="beranda.php"> <i class="fas fa-angle-right"></i> Main</a>
+               <a href="wisata.php"> <i class="fas fa-angle-right"></i> Wisata</a>
+               <a href="about.html"> <i class="fas fa-angle-right"></i> Perjalanan</a>
+               <a href="package.html"> <i class="fas fa-angle-right"></i> Paket</a>
+               <a href="book.html"> <i class="fas fa-angle-right"></i> Pesan</a>
+            </div>
+      
+            <div class="box">
+               <h3>Link Tambahan</h3>
+               <a href="#"> <i class="fas fa-angle-right"></i> Semua Pertanyaan</a>
+               <a href="#"> <i class="fas fa-angle-right"></i> about us</a>
+               <a href="#"> <i class="fas fa-angle-right"></i> privacy policy</a>
+               <a href="#"> <i class="fas fa-angle-right"></i> terms of use</a>
+            </div>
+      
+            <div class="box">
+               <h3>Untuk info</h3>
+               <a href="#"> <i class="fas fa-phone"></i> +628111111222</a>
+               <a href="#"> <i class="fas fa-phone"></i> +6285111122225 </a>
+               <a href="#"> <i class="fas fa-envelope"></i> Trip_Buddy@gmail.com </a>
+               <a href="#"> <i class="fas fa-map"></i> Aceh, Indonesia </a>
+            </div>
+      
+            <div class="box">
+               <h3>Follow Semua</h3>
+               <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+               <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+               <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+               <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+            </div>
+      
+         </div>
+      
+         <div class="credit"> Copyright <span> Trip Buddy </span>2023 </div>
+    </section>
+
+    <!-- swiper js link  -->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <!-- custom js file link  -->
+    <script src="/public/js/index.js"></script>
+    <script src="/public/js/script.js" defer></script>
+</body>
+</html>

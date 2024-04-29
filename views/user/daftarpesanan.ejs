@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../image/1.png" type="image/x-icon" />
+    <title>Trip Buddy</title>
+    <!-- Swiper CSS link -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <!-- Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <!-- Custom CSS file link -->
+    <link rel="stylesheet" type="text/css" href="/public/css/pesanan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap" rel="stylesheet">
+    <script>
+        function konfirmasiLogout() {
+            var konfirmasi = confirm("Apakah Anda ingin keluar?");
+            if (konfirmasi) {
+                // Tambahkan kode logout di sini
+                window.location.href = "logout.php"; // atau URL logout yang sesuai
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <section class="header">
+        <a href="home.html" class="logo">Trip Buddy</a>
+        <nav class="navbar">
+            <a href="/user/index">Beranda</a>
+            <a href="/user/destinasi">Wisata</a>
+            <a href="/user/penginapan">Penginapan</a>
+            <a href="/user/paket">Paket</a>
+            <a href="/user/daftarpesanan">My Booking</a>
+        </nav>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#272343;">
+              <i class="fa-solid fa-user" style="margin-right:5px;"></i><%= username %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="/">Logout</a>
+            </div>
+          </li>
+    </section>
+
+    <section class="home">
+        <div class="pemesanan">
+            <div class="profil">
+                <a href="#"><i class="fa-sharp fa-solid fa-person-walking-luggage"
+                        style="padding-right: 30px; color: #000;"></i>Wisata</a>
+            </div>
+            <div class="kanan" onclick="">
+                <a href="#"><i class="fa-brands fa-usps" style="padding-right: 15px; color: #000;"></i>Paket
+                    Wisata</a>
+            </div>
+            <div class="kanan1" onclick=" ">
+                <a href="#"><i class="fa-solid fa-hotel"
+                        style="padding-right: 30px; color: #000;"></i>Hotel</a>
+            </div>
+        </div>
+        <!-- views/user/daftarpesanan.ejs -->
+
+        <div class="pesanaja">
+            <!-- Tampilkan pesanan Destinasi -->
+            <div class="kanan_pesan">
+            <h1>Riwayat Pesanan Destinasi</h1>
+            <% listPesanan.forEach(pesanan => { %>
+                <div class="kotak1">
+                <div class="nomor">
+                    <img src="/gambar/<%= pesanan.id_destinasi %>" alt="Gambar Destinasi">
+                </div>
+                <div class="desk">
+                    <p>Nama: <%= pesanan.nama %></p>
+                    <p>Email: <%= pesanan.email %></p>
+                    <p>Alamat: <%= pesanan.alamat %></p>
+                    <!-- Tambahkan kunci nilai lainnya sesuai dengan struktur pesanan Anda -->
+                    <p>Nama Destinasi: <%= pesanan.nama_destinasi %></p>
+                    <p>Jumlah Orang: <%= pesanan.jumlah_orang %></p>
+                    <p>Tanggal Pergi: <%= pesanan.tgl_pergi %></p>
+                    <p>Tanggal Pulang: <%= pesanan.tgl_pulang %></p>
+                    <p>Total Harga: <%= pesanan.total_harga %></p>
+                    <!-- <form action="/proseshapuspemesanan/proseshapus/<%= pesanan.id_pesandes %>" method="post">
+                        <input type="hidden" name="id_pesandes">
+                        <button type="submit" name="delete_btn" class="btn btn-danger"
+                            onclick="return confirm('Anda yakin akan membatalkan pemesanan?')">Batal Pemesanan</button>
+                    </form>                                                        -->
+                </div>
+                </div>
+            <% }); %>
+            </div>
+        </div>
+        
+        <div class="pesanaja">
+            <!-- Tampilkan pesanan Penginapan -->
+            <div class="kanan_pesan">
+            <h1>Riwayat Pesanan Penginapan</h1>
+            <% listPenginapan.forEach(pesanan => { %>
+                <div class="kotak1">
+                <div class="nomor">
+                    <img src="/gambarpenginapan/<%= pesanan.id_penginapan %>" alt="Gambar Penginapan">
+                </div>
+                <div class="desk">
+                    <p>Nama: <%= pesanan.nama %></p>
+                    <p>Email: <%= pesanan.email %></p>
+                    <p>Alamat: <%= pesanan.alamat %></p>
+                    <!-- Tambahkan kunci nilai lainnya sesuai dengan struktur pesanan Anda -->
+                    <p>Nama Penginapan: <%= pesanan.nama_penginapan %></p>
+                    <p>Jumlah Orang: <%= pesanan.jumlah_orang %></p>
+                    <p>Tanggal Pergi: <%= pesanan.tgl_pergi %></p>
+                    <p>Tanggal Pulang: <%= pesanan.tgl_pulang %></p>
+                    <p>Total Harga: <%= pesanan.total_harga %></p>
+                    <!-- <form action="/proseshapuspemesanan/proseshapuspenginapan/<%= pesanan.id_pespenginapan %>" method="post">
+                        <input type="hidden" name="id_pespenginapan">
+                        <button type="submit" name="delete_btn" class="btn btn-danger"
+                            onclick="return confirm('Anda yakin akan membatalkan pemesanan?')">Batal Pemesanan</button>
+                    </form>  -->
+                </div>
+                </div>
+            <% }); %>
+            </div>
+        </div>            
+
+        <div class="pesanaja">
+            <!-- Tampilkan pesanan Penginapan -->
+            <div class="kanan_pesan">
+            <h1>Riwayat Pesanan Paket</h1>
+            <% listPaket.forEach(pesanan => { %>
+                <div class="kotak1">
+                <div class="nomor">
+                    <img src="/gambarpaket/<%= pesanan.new_id_pakettour %>" alt="Gambar Penginapan">
+                </div>
+                <div class="desk">
+                    <p>Nama: <%= pesanan.nama %></p>
+                    <p>Email: <%= pesanan.email %></p>
+                    <p>Alamat: <%= pesanan.alamat %></p>
+                    <!-- Tambahkan kunci nilai lainnya sesuai dengan struktur pesanan Anda -->
+                    <p>Nama Penginapan: <%= pesanan.namapaket %></p>
+                    <p>Jumlah Orang: <%= pesanan.jumlah_orang %></p>
+                    <p>Tanggal Pergi: <%= pesanan.tgl_pergi %></p>
+                    <p>Tanggal Pulang: <%= pesanan.tgl_pulang %></p>
+                    <p>Total Harga: <%= pesanan.total_harga %></p>
+                    <!-- <form action="/proseshapuspemesanan/proseshapuspenginapan/<%= pesanan.id_pespenginapan %>" method="post">
+                        <input type="hidden" name="id_pespenginapan">
+                        <button type="submit" name="delete_btn" class="btn btn-danger"
+                            onclick="return confirm('Anda yakin akan membatalkan pemesanan?')">Batal Pemesanan</button>
+                    </form>  -->
+                </div>
+                </div>
+            <% }); %>
+            </div>
+        </div> 
+
+    </section>
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Link Utama</h3>
+                <a href="beranda.php"> <i class="fas fa-angle-right"></i> Main</a>
+                <a href="wisata.php"> <i class="fas fa-angle-right"></i> Wisata</a>
+                <a href="about.html"> <i class="fas fa-angle-right"></i> Perjalanan</a>
+                <a href="package.html"> <i class="fas fa-angle-right"></i> Paket</a>
+                <a href="book.html"> <i class="fas fa-angle-right"></i> Pesan</a>
+            </div>
+            <div class="box">
+                <h3>Link Tambahan</h3>
+                <a href="#"> <i class="fas fa-angle-right"></i> Semua Pertanyaan</a>
+                <a href="#"> <i class="fas fa-angle-right"></i> about us</a>
+                <a href="#"> <i class="fas fa-angle-right"></i> privacy policy</a>
+                <a href="#"> <i class="fas fa-angle-right"></i> terms of use</a>
+            </div>
+            <div class="box">
+                <h3>Untuk info</h3>
+                <a href="#"> <i class="fas fa-phone"></i> +628111111222</a>
+                <a href="#"> <i class="fas fa-phone"></i> +6285111122225 </a>
+                <a href="#"> <i class="fas fa-envelope"></i> Trip_Buddy@gmail.com </a>
+                <a href="#"> <i class="fas fa-map"></i> Aceh, Indonesia </a>
+            </div>
+            <div class="box">
+                <h3>Follow Semua</h3>
+                <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+            </div>
+        </div>
+        <div class="credit"> Copyright <span> Trip Buddy </span>2023 </div>
+    </section>
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script src="/public/js/script.js" defer></script>
+</body>
+
+</html>

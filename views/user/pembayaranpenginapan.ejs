@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/public/css/pesan.css">
+    <script src="https://kit.fontawesome.com/674cafd30b.js" crossorigin="anonymous"></script>
+    <title>Pesan</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Trip Buddy</h1>
+    </div>
+
+    <div class="kanan">
+        <h1>Detail Paket</h1>
+
+        <div class="kotakpaket">
+            <div class="isi1">
+                <!-- Replace the following with the actual image source -->
+                <img src="/get_imagepenginapan/<%= penginapan.id_penginapan %>" alt="Destination Image">
+            </div>
+            <div class="isi2">
+                <h3><%= penginapan.nama_penginapan %></h3>
+                <p><%= penginapan.deskripsi_penginapan %></p>
+            </div>
+        </div>
+
+        <div class="kotakpaket1">
+            <p>Harga</p>
+            <h1>Rp<%= penginapan.harga_penginapan %></h1>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="kiri">
+            <div class="kotak1">
+                <h1><!-- PHP code was here, removed for HTML-only version --></h1>
+            </div>
+            <div class="kotak2">
+                <h1>Form Pemesanan</h1>
+                <div class="form">
+                    <form method="post" action="/pesanpenginapan/prosesPemesanan">
+                        <input type="hidden" id="harganip" name="harganip" value="<%= penginapan.harga_penginapan %>">
+                        <input type="hidden" id="id_penginapan" name="id_penginapan" value="<%= penginapan.id_penginapan %>">
+                        <input type="hidden" id="nama_penginapan" name="nama_penginapan" value="<%= penginapan.nama_penginapan %>">
+                        
+                        <label for="nama">Nama:</label>
+                        <input type="text" id="nama" name="nama">
+                        
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email">
+                        
+                        <label for="alamat">Alamat:</label>
+                        <input type="alamat" id="alamat" name="alamat">
+                        
+                        <label for="no_telepon">No Telepon:</label>
+                        <input type="text" id="no_telepon" name="no_telepon">
+                        
+                        <label>Jumlah Orang</label>
+                        <input type="number" id="jumlah_orang" name="jumlah_orang" placeholder="Masukkan Jumlah orang">
+                        
+                        <label>Keberangkaatan</label>
+                        <input type="date" id="tgl_pergi" name="tgl_pergi" placeholder="Masukkan Tanggal Pergi">
+                        
+                        <label>Kepulangan</label>
+                        <input type="date" id="tgl_pulang" name="tgl_pulang" placeholder="Masukkan Tanggal Pulang">
+                        
+                        <label>Bank</label>
+                        <select  id="bank" name="bank" class="form-input">
+                            <option class="form-input">BSI</option>
+                            <option class="form-input">BNI</option>
+                            <option class="form-input">BRI </option>
+                        </select><br>
+
+                        <label>No Rekening</label>
+                        <input type="number" id="no_rek" name="no_rek" placeholder="Masukkan Nomor Rekening">
+                        
+                        <a href="/user/penginapan" class="tombol">Kembali</a>
+                        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var submitButton = document.getElementById("submit");
+        submitButton.addEventListener("click", function () {
+            window.alert("Pemesanan berhasil!");
+        });
+    </script>
+</body>
+</html>
